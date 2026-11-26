@@ -3,20 +3,20 @@
 ## Required Nao project
 
 ```text
-Project: tesis-condition-c
+Project: booksql-condition-c
 Repository: https://github.com/cfocoder/booksql_cube_nao_semantic_layer_c.git
 Branch: main
 ```
 
-## Required runtime variables
+## Data route
 
 ```text
-CUBE_API_URL
-CUBE_API_SECRET
-OPENAI_API_KEY / OPENAI_BASE_URL
-OPENROUTER_API_KEY / OPENROUTER_BASE_URL
+Nao project -> cube_semantic MCP -> cube-mcp-booksql:8787/mcp
+            -> Cube BookSQL API -> SQLite accounting.sqlite working copy
 ```
 
-The existing deployment bootstrap must provide `/app/context/agent/mcps/cube_server.mjs` and the MCP SDK. The repository supplies `agent/mcps/mcp.json`; it does not contain credentials or the generated adapter source. The shared `decimal_calculator` MCP is registered for data-free exact arithmetic only and does not change the Cube data route.
+C uses only Cube for BookSQL data. The Nao project does not receive `CUBE_API_SECRET` or a direct SQLite/PostgreSQL credential; the Cube MCP service owns the Cube API secret. `cube-mcp-booksql` must be a separate private service on the Coolify network, not the Contoso `cube-mcp-private` service.
 
-Do not add `direct_postgres` to this project's `nao_config.yaml`, environment, or deployment override.
+## Validation
+
+Verify MCP metadata and a bounded BookSQL query from the actual Nao runtime before using C. Confirm the metadata/model is BookSQL and that no direct database connection is configured in the project.

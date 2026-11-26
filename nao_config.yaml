@@ -1,6 +1,6 @@
-# Formal scenario C: Cube is accessed through MCP; no native database.
-# The deployment bootstrap supplies the MCP runtime and secrets.
-project_name: tesis-condition-c
+# BookSQL scenario C: Cube BookSQL through a dedicated MCP; no direct database.
+# Runtime model credentials are supplied outside Git.
+project_name: booksql-condition-c
 llm:
   providers:
     - provider: openai
