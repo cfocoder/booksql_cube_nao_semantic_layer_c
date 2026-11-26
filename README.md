@@ -1,18 +1,17 @@
-# Scenario C — Cube Core semantic layer without business skill
+# Scenario C — Cube BookSQL semantic layer without extra business context
 
-This repository is the Nao Multi-project context for formal scenario **C** to test the BookSQL benchmark.
+This repository is the Nao Multi-project context for BookSQL scenario **C**.
 
 ## Boundary
 
-- No native PostgreSQL database is declared.
-- Analytic data is accessed only through the `cube_semantic` MCP; `decimal_calculator` has no data access.
-- Cube tools are `cube_metadata` and `cube_query`; the shared `decimal_calculator.calculate` tool is only for exact arithmetic over retrieved values.
-- The agent uses the measures, dimensions, filters, and time grains exposed by Cube.
-- No Contoso business skill or domain-specific business-policy documentation is available.
-- `direct_postgres` must not be present or usable in this project.
+- BookSQL data is accessed only through `cube_semantic` (`cube_metadata` and `cube_query`) and the dedicated Cube BookSQL MCP.
+- The physical Cube source is SQLite `accounting.sqlite`; C does not connect to SQLite directly.
+- No direct SQL, native database connection, or business-policy skill is present.
+- `decimal_calculator.calculate` is available only for arithmetic over values already returned by Cube.
+- Use the measures/dimensions exposed by live Cube metadata; do not assume a measure or join absent from that metadata.
 
 ## Project mapping
 
-- Nao project: `tesis-condition-c`
+- Nao project: `booksql-condition-c`
 - Repository: `cfocoder/booksql_cube_nao_semantic_layer_c`
-- Expected route: `cube_semantic` → Cube REST → Cube Core → PostgreSQL
+- Expected route: `cube_semantic` → private Cube MCP → Cube Core → SQLite
