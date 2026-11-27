@@ -15,7 +15,7 @@ Nao project -> cube_semantic MCP -> cube-mcp-booksql:8787/mcp
             -> Cube BookSQL API -> SQLite accounting.sqlite working copy
 ```
 
-C uses only Cube for BookSQL data. The Nao project does not receive `CUBE_API_SECRET` or a direct SQLite/PostgreSQL credential; the Cube MCP service owns the Cube API secret. `cube-mcp-booksql` must be a separate private service on the Coolify network, not the Contoso `cube-mcp-private` service.
+C uses only Cube for BookSQL data. The Nao project receives no database credentials; the Cube MCP service owns the Cube API secret and accesses the SQLite-backed BookSQL model. `cube-mcp-booksql` must be a separate private service on the Coolify network, not the Contoso `cube-mcp-private` service.
 
 ## Validation
 
